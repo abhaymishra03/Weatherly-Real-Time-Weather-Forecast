@@ -1,64 +1,873 @@
+/* =========================
+   GOOGLE FONT & RESET
+========================= */
+
 *{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color:#0F172A;
-    /* flex-direction: column; */
-    
-}
-.container{
+    min-height:100vh;
+
     display:flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    background-color: #1E293B;
-}
-h1{
-    color:#F8FAFC;
-    padding: 1rem 1rem 1rem 1rem ;
-    border-radius: 10px;
-    margin:1rem 1rem 1rem 1rem;
-}
-.search-box{
-    display: flex;
     justify-content:center;
-    align-items: center;
+    align-items:center;
 
+    padding:30px;
 
-
-  
+    background:linear-gradient(
+        135deg,
+        #0F172A,
+        #1E293B,
+        #243447
+    );
 
 }
+
+
+/* =========================
+        MAIN CARD
+========================= */
+
+.container{
+
+    width:430px;
+    max-width:95%;
+
+    padding:30px;
+
+    border-radius:28px;
+
+    background:rgba(30,41,59,.78);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.45);
+
+}
+
+
+/* =========================
+          HEADER
+========================= */
+
+header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+header h1{
+
+    color:#F8FAFC;
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+}
+
+.subtitle{
+
+    margin-top:6px;
+
+    color:#94A3B8;
+
+    font-size:.95rem;
+
+}
+
+
+/* =========================
+       TOP CONTROLS
+========================= */
+
+.top-controls{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+
+/* Location Button */
+
+.location-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    background:#334155;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    font-size:.9rem;
+
+    transition:.3s;
+
+}
+
+.location-btn:hover{
+
+    background:#3B82F6;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* Celsius Toggle */
+
+.toggle{
+
+    color:white;
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+}
+
+.toggle span{
+
+    cursor:pointer;
+
+    color:#CBD5E1;
+
+}
+
+.toggle .active{
+
+    color:#3B82F6;
+
+    font-weight:600;
+
+}
+
+
+/* =========================
+        SEARCH BOX
+========================= */
+
+.search-box{
+
+    display:flex;
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:#334155;
+
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.35);
+
+    margin-bottom:28px;
+
+}
+
+
 .search-box input{
 
-height:45px;
-    width: 300px;
-    padding-left: 10px;
-    font-size: 15px;
-    color: #64748B;
-    background-color: #334155;
-    border: none;
-    border-top-left-radius:10px ;
-    border-bottom-left-radius:10px ;
+    flex:1;
+
+    height:55px;
+
+    border:none;
+
+    outline:none;
+
+    padding-left:18px;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:1rem;
+
 }
+
+.search-box input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+
+.search-box input:focus{
+
+    box-shadow:
+    inset 0 0 0 2px #3B82F6;
+
+}
+
+
 .search-box button{
 
-    height: 45px;
-    
-background-color: #334155;
-border:none;
-color:#F8FAFC;
-font-size: 25px;
-padding:2px 2px 2px 2px;
-border-top-right-radius:10px ;
-    border-bottom-right-radius:10px ;
-    cursor: pointer;
+    width:60px;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:#3B82F6;
+
+    color:white;
+
+    font-size:1.2rem;
+
+    transition:.3s;
+
+}
+
+
+.search-box button:hover{
+
+    background:#2563EB;
+
+}
+
+
+/* =========================
+      ERROR / LOADING
+========================= */
+
+.error,
+.loading{
+
+    display:none;
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+}
+
+.error{
+
+    color:#EF4444;
+
+}
+/* =========================
+        WEATHER CARD
+========================= */
+
+.weather-card{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.weather-icon{
+
+    width:140px;
+
+    margin-bottom:10px;
+
+    transition:.4s ease;
+
+}
+
+.weather-icon:hover{
+
+    transform:scale(1.08);
+
+}
+
+#temp{
+
+    font-size:5rem;
+
+    color:#F8FAFC;
+
+    font-weight:700;
+
+    line-height:1;
+
+    margin-bottom:10px;
+
+}
+
+#city-name{
+
+    font-size:2rem;
+
+    color:#FFFFFF;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+#weather-status{
+
+    color:#FACC15;
+
+    font-size:1.1rem;
+
+    font-weight:500;
+
+    margin-bottom:10px;
+
+}
+
+.feels-like{
+
+    color:#CBD5E1;
+
+    font-size:.95rem;
+
+    margin-bottom:15px;
+
+}
+
+.feels-like span{
+
+    color:#FFFFFF;
+
+    font-weight:600;
+
+}
+
+.date-time{
+
+    color:#94A3B8;
+
+    font-size:.9rem;
+
+}
+
+
+
+/* =========================
+      DETAILS GRID
+========================= */
+
+.details-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.detail-card{
+
+    background:#334155;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    transition:.3s ease;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+
+
+.detail-card:hover{
+
+    transform:translateY(-5px);
+
+    background:#3B82F6;
+
+}
+
+
+
+.detail-card img{
+
+    width:42px;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.detail-card i{
+
+    font-size:2rem;
+
+    color:#F8FAFC;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.detail-card h4{
+
+    color:white;
+
+    font-size:1.2rem;
+
+    margin-bottom:6px;
+
+}
+
+
+
+.detail-card p{
+
+    color:#CBD5E1;
+
+    font-size:.9rem;
+
+}
+
+
+
+/* =========================
+        FORECAST
+========================= */
+
+.forecast{
+
+    margin-top:10px;
+
+}
+
+
+
+.forecast h3{
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    font-size:1.2rem;
+
+}
+
+
+
+.forecast-container{
+
+    display:flex;
+
+    gap:15px;
+
+    overflow-x:auto;
+
+    padding-bottom:10px;
+
+}
+
+
+
+/* Hide Scrollbar */
+
+.forecast-container::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+
+.forecast-card{
+
+    min-width:90px;
+
+    background:#334155;
+
+    border-radius:18px;
+
+    padding:18px 12px;
+
+    text-align:center;
+
+    transition:.3s ease;
+
+    flex-shrink:0;
+
+}
+
+
+
+.forecast-card:hover{
+
+    transform:translateY(-6px);
+
+    background:#3B82F6;
+
+}
+
+
+
+.forecast-card p{
+
+    color:#CBD5E1;
+
+    font-size:.95rem;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.forecast-card img{
+
+    width:45px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.forecast-card h4{
+
+    color:white;
+
+    font-size:1.2rem;
+
+}
+/* =========================
+      LOADING SPINNER
+========================= */
+
+.loading{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    margin:20px 0;
+}
+
+.spinner{
+    width:45px;
+    height:45px;
+
+    border:4px solid rgba(255,255,255,.15);
+    border-top:4px solid #3B82F6;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+    margin-bottom:12px;
+}
+
+.loading p{
+    color:#CBD5E1;
+}
+
+
+/* =========================
+         ERROR BOX
+========================= */
+
+.error{
+
+    display:none;
+
+    padding:14px;
+
+    margin-bottom:20px;
+
+    border-radius:12px;
+
+    background:rgba(239,68,68,.15);
+
+    border:1px solid rgba(239,68,68,.35);
+
+    color:#FCA5A5;
+
+    text-align:center;
+
+    animation:fadeIn .4s ease;
+
+}
+
+
+
+/* =========================
+          FOOTER
+========================= */
+
+footer{
+
+    margin-top:35px;
+
+    text-align:center;
+
+    color:#94A3B8;
+
+    font-size:.85rem;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:18px;
+
+}
+
+
+
+/* =========================
+      WEATHER ANIMATION
+========================= */
+
+.weather-icon{
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+
+
+/* =========================
+       HOVER EFFECTS
+========================= */
+
+.container{
+
+    transition:.35s ease;
+
+}
+
+.container:hover{
+
+    box-shadow:
+    0 25px 55px rgba(0,0,0,.55);
+
+}
+
+
+
+.detail-card,
+.forecast-card,
+.location-btn,
+.search-box button{
+
+    transition:all .3s ease;
+
+}
+
+
+
+/* =========================
+        ANIMATIONS
+========================= */
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+
+
+@keyframes spin{
+
+    100%{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* =========================
+     MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+.container{
+
+    width:100%;
+
+    padding:22px;
+
+    border-radius:22px;
+
+}
+
+
+header h1{
+
+    font-size:1.9rem;
+
+}
+
+
+.subtitle{
+
+    font-size:.85rem;
+
+}
+
+
+.top-controls{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.search-box input{
+
+    font-size:.95rem;
+
+}
+
+
+#temp{
+
+    font-size:4rem;
+
+}
+
+
+#city-name{
+
+    font-size:1.6rem;
+
+}
+
+
+.weather-icon{
+
+    width:120px;
+
+}
+
+
+.details-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.forecast-card{
+
+    min-width:85px;
+
+}
+
+}
+
+
+
+/* =========================
+     TABLET RESPONSIVE
+========================= */
+
+@media(min-width:601px) and (max-width:900px){
+
+.container{
+
+    width:500px;
+
+}
+
+}
+
+
+
+/* =========================
+      DESKTOP EFFECTS
+========================= */
+
+@media(min-width:901px){
+
+.container{
+
+    animation:fadeIn .8s ease;
+
+}
 
 }

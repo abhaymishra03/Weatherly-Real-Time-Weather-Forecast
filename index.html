@@ -3,63 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Weatherly</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
+
 <body>
-    <div class="container">
-        <!-- Heading -->
-        <h1>Weatherly - Real-Time Weather Forecast</h1>
 
-        <!-- Search bar -->
-        <div class="search-box">
+<div class="container">
 
-            
-                <input type="text" placeholder="enter your city">
-                <button>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            
+    <!-- Header -->
 
+    <header>
 
-        </div>
+        <h1>Weatherly</h1>
 
-        <div class="weather-city">
+        <p class="subtitle">
+            Real-Time Weather Forecast
+        </p>
 
-            <img src="./images/clear.png" alt="clearWheather">
-            <h2 id="temp">35°c</h2>
-            <p id="city-name">Gurugram</p>
+    </header>
 
 
-        </div>
+    <!-- Top Controls -->
 
-        <div class="more-weather">
+    <div class="top-controls">
 
-            <div id="humidity-bar">
-                <img src="/images/humidity.png" alt="">
-                <p id="humidity">
-                    <h3>48%</h3>
-                      Humidity
-                </p>
-            </div>
-            <div id="wind-bar">
-                <img src="/images/wind.png" alt="">
-                <p id="wind">
-                    <h3>23 km/h</h3>
-                      Wind Speed
-                </p>
-            </div>
+        <button class="location-btn">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            Current Location
+
+        </button>
+
+
+        <div class="toggle">
+
+            <span class="active">°C</span>
+
+            <span>|</span>
+
+            <span>°F</span>
 
         </div>
 
-
-
-
-<!-- last -->
     </div>
 
 
-    <script src="app.js"></script>
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <input id="inpt"
+            type="text"
+            placeholder="Search city...">
+
+        <button id="btn">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- Error -->
+
+    <div class="error">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <p>City not found.</p>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div class="loading">
+
+        <div class="spinner"></div>
+
+        <p>Loading...</p>
+
+    </div>
+
+
+    <!-- Weather -->
+
+    <section class="weather-card">
+
+        <img
+            src="./images/clear.png"
+            class="weather-icon"
+            alt="Weather">
+
+        <h2 id="temp">35°C</h2>
+
+        <h3 id="city-name">
+
+            Gurugram
+
+        </h3>
+
+        <p id="weather-status">
+
+            Clear Sky
+
+        </p>
+
+        <p class="feels-like">
+
+            Feels Like
+
+            <span id="feels-like">
+
+                33°C
+
+            </span>
+
+        </p>
+
+
+        <div class="date-time">
+
+            <span id="date">
+
+                Friday, 31 July
+
+            </span>
+
+            •
+
+            <span id="time">
+
+                10:42 PM
+
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- Weather Details -->
+
+    <section class="details-grid">
+
+        <div class="detail-card">
+
+            <img src="./images/humidity.png">
+
+            <h4 id="humidity">
+
+                48%
+
+            </h4>
+
+            <p>Humidity</p>
+
+        </div>
+
+        <div class="detail-card">
+
+            <img src="./images/wind.png">
+
+            <h4 id="wind">
+
+                23 km/h
+
+            </h4>
+
+            <p>Wind Speed</p>
+
+        </div>
+
+        <div class="detail-card">
+
+            <i class="fa-solid fa-gauge-high"></i>
+
+            <h4 id="pressure">
+
+                1012 hPa
+
+            </h4>
+
+            <p>Pressure</p>
+
+        </div>
+
+        <div class="detail-card">
+
+            <i class="fa-solid fa-eye"></i>
+
+            <h4 id="visibility">
+
+                10 km
+
+            </h4>
+
+            <p>Visibility</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Forecast -->
+
+    <section class="forecast">
+
+        <h3>
+
+            5-Day Forecast
+
+        </h3>
+
+        <div class="forecast-container">
+
+            <div class="forecast-card">
+
+                <p>Mon</p>
+
+                <img src="./images/clear.png">
+
+                <h4>34°</h4>
+
+            </div>
+
+            <div class="forecast-card">
+
+                <p>Tue</p>
+
+                <img src="./images/rain.png">
+
+                <h4>31°</h4>
+
+            </div>
+
+            <div class="forecast-card">
+
+                <p>Wed</p>
+
+                <img src="./images/clouds.png">
+
+                <h4>30°</h4>
+
+            </div>
+
+            <div class="forecast-card">
+
+                <p>Thu</p>
+
+                <img src="./images/mist.png">
+
+                <h4>29°</h4>
+
+            </div>
+
+            <div class="forecast-card">
+
+                <p>Fri</p>
+
+                <img src="./images/snow.png">
+
+                <h4>27°</h4>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        Made with ❤️ by Abhay Mishra
+
+    </footer>
+
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
