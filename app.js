@@ -1,5 +1,8 @@
-const baseURL ="https://api.openweathermap.org/data/2.5/weather?q=";
+const baseURL ="https://api.openweathermap.org/data/2.5/forecast?q=";
 const apiKey ="&appid=4d33f964fdad04b3f83ea7b5c71ebaf2&units=metric";
+
+
+
 
 let searchCity = document.querySelector("#inpt");
 let searchBtn = document.querySelector("#btn");
@@ -7,7 +10,7 @@ let cityName = document.querySelector("#city-name");
 let cityTemp = document.querySelector("#temp");
 let weatherStatus = document.querySelector("#weather-status");
 let weatherIcon = document.querySelector(".weather-icon");
-let feelsLike = document.querySelector(".feels-like");
+let feelsLike = document.querySelector("#feels-like");
 let showDate = document.querySelector("#date");
 let showTime = document.querySelector("#time");
 let showHumidity = document.querySelector("#humidity");
@@ -28,16 +31,16 @@ async function apicall(){
     let data = await response.json();
 
     console.log(data);
-    changeCityName(data.name);
-    changeCitytemp(data.main.temp);
-    changeWeatherStatus(data.weather[0].main);
-    console.log(data.main.feels_like);
-    changeFeelsLike(data.main.feels_like);
+    changeCityName(data.city.name);
+    changeCitytemp(data.list[0].main.temp);
+    changeWeatherStatus(data.list[0].weather[0].main);
+    changeFeelsLike(data.list[0].main.feels_like);
     changeDateAndTime();
-    changeHumidity(data.main.humidity);
-    changeWindSpeed(data.wind.speed);
-    changePressure(data.main.pressure);
-    changeVis(data.visibility);
+    changeHumidity(data.list[0].main.humidity);
+    changeWindSpeed(data.list[0].wind.speed);
+    changePressure(data.list[0].main.pressure);
+    changeVis(data.list[0].visibility);
+    
     
     
     
