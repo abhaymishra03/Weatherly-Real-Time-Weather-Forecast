@@ -17,6 +17,12 @@ let showHumidity = document.querySelector("#humidity");
 let showWind = document.querySelector("#wind");
 let showpressure = document.querySelector("#pressure");
 let showVisibility= document.querySelector("#visibility");
+let forcasts = document.querySelectorAll(".forecast-card");
+
+
+
+
+
 
 
 //Api call on search button press
@@ -40,13 +46,50 @@ async function apicall(){
     changeWindSpeed(data.list[0].wind.speed);
     changePressure(data.list[0].main.pressure);
     changeVis(data.list[0].visibility);
+
+    // changing forcasts 
+   // Get one forecast for each day (12:00 PM forecast)
+const dailyForecast = data.list.filter(item =>
+    item.dt_txt.includes("12:00:00")
+);
+
+for (let i = 0; i < forcasts.length && i < dailyForecast.length; i++) {
+
+    // Current day's forecast
+    const forecast = dailyForecast[i];
+
+    // Get elements inside the current forecast card
+    const day = forcasts[i].querySelector("p");
+    const img = forcasts[i].querySelector("img");
+    const temp = forcasts[i].querySelector("h4");
+
+    // Convert date into weekday name
+    const date = new Date(forecast.dt_txt);
+    day.innerText = date.toLocaleDateString("en-US", {
+        weekday: "short"
+    });
+
+    // Temperature
+    temp.innerText = `${Math.round(forecast.main.temp)}°C`;
+
+    // Weather icon
+    const icon = forecast.weather[0].icon;
+    img.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+}
+    
+    
+
+}
+
+
+
     
     
     
     
     
 
-}
+
 
 //city name
 function changeCityName(name){
@@ -77,10 +120,10 @@ function changeFeelsLike(temp) {
 function changeDateAndTime(){
 
     let now = new Date ;
-date.innerText=now.toLocaleDateString();
 
 
-TimeRanges.innerText=now.toLocaleTimeString();
+showDate.innerText = now.toLocaleDateString();
+showTime.innerText = now.toLocaleTimeString();
 
 }
 function changeHumidity(hum){
