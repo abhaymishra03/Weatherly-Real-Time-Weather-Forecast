@@ -21,6 +21,8 @@ let forcasts = document.querySelectorAll(".forecast-card");
 let toggleBtns = document.querySelectorAll(".toggle span");
 let temps = document.querySelectorAll(".convert-temp");
 let locationBtn = document.querySelector(".location-btn");
+let errClass = document.querySelector("#err");
+let loadClass = document.querySelector("#load");
 
 let turnC = false;//curr location or by city name
 // press enter to search
@@ -135,19 +137,20 @@ turnC=true;
 
 
 function showLoading(){
-    document.querySelector(".loading").classList.add("show");
+   
+    loadClass.setAttribute("class","showing");
+
 }
 
 function hideLoading(){
-    document.querySelector(".loading").classList.remove("show");
+    loadClass.setAttribute("class","loading");
+    
 }
 function showError(message){
 
-    let errorBox = document.querySelector(".error");
+  errClass.setAttribute("class","showing");
 
-    errorBox.innerText = message;
-
-    errorBox.classList.add("show");
+  document.querySelector("#err p").innerText=message;
 
 }
 

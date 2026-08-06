@@ -272,6 +272,15 @@ header h1{
     color:#EF4444;
 
 }
+/* code */
+.showing{
+    color:white;
+
+    text-align:center;
+    justify-content: center;
+
+    margin-bottom:20px;
+}
 /* =========================
         WEATHER CARD
 ========================= */
