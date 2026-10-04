@@ -259,19 +259,11 @@ header h1{
 
     display:none;
 
-    color:white;
 
-    text-align:center;
-
-    margin-bottom:20px;
 
 }
 
-.error{
 
-    color:#EF4444;
-
-}
 /* code */
 .showing{
     color:white;
@@ -582,8 +574,8 @@ header h1{
       LOADING SPINNER
 ========================= */
 
-.loading{
-    display:none;
+.loading.showing{
+    display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
@@ -604,7 +596,7 @@ header h1{
     margin-bottom:12px;
 }
 
-.loading p{
+.showing p{
     color:#CBD5E1;
 }
 
@@ -613,9 +605,9 @@ header h1{
          ERROR BOX
 ========================= */
 
-.error{
+.error.showing{
 
-    display:none;
+    display:block;
 
     padding:14px;
 
