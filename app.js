@@ -1,9 +1,5 @@
 const baseURL ="https://api.openweathermap.org/data/2.5/forecast?";
 const apiKey ="appid=4d33f964fdad04b3f83ea7b5c71ebaf2&units=metric";
-
-
-
-
 let searchCity = document.querySelector("#inpt");
 let searchBtn = document.querySelector("#btn");
 let cityName = document.querySelector("#city-name");
